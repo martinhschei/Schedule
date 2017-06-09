@@ -1,0 +1,21 @@
+.hour-slice
+{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.hour-slice:hover
+{
+    background-color:powderblue;
+}
+
+.booking-table-heading
+{
+    padding: 30px;
+}
+
+.hour-coloumn
+{
+    background-color:palegreen;
+    padding: 20px;
+}
