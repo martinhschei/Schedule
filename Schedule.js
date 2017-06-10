@@ -1,6 +1,6 @@
 $(document).ready(function() {
     
-    $(".hour-slice").click(function(){
+    $(".time-interval").click(function(){
 
         console.log(this.dataset.timeindex);
         

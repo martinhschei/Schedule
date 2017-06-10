@@ -86,7 +86,7 @@ HTML;
                 {
                     /*$table_body .= "<td data-timeindex='$i-$j-$x' class='hour-slice'> | slice:$x - hour:$j - dag:$i | </td>";*/
                     $slice_interval = $this->create_slice_string($hour_slice, $x, $hour);
-                    $table_body .= "<td data-timeindex='$i-$j-$x'> <label class='hour-slice'> <input type='checkbox' hidden> <span> " . $slice_interval. " </span> </label> </td>";
+                    $table_body .= "<td class='time-interval' data-timeindex='$i-$j-$x'> <label class='hour-slice'> <input type='checkbox' hidden> <span> " . $slice_interval. " </span> </label> </td>";
                     
                     /*
 
