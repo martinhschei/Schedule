@@ -1,7 +1,6 @@
 .hour-slice
 {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding:10px;
 }
 
 .hour-slice:hover
@@ -14,8 +13,12 @@
     padding: 30px;
 }
 
-.hour-coloumn
+.hour-column
 {
     background-color:palegreen;
     padding: 20px;
+}
+
+.hour-slice input:checked + span {
+    background-color:lightcoral;
 }

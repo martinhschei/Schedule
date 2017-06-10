@@ -3,16 +3,15 @@
 class Schedule
 {
 
+    // split the hour in how many chunks?
     const DEFAULT_HOUR_SLICE = 4;
-
+    // .....hours per day....
     const DEFAULT_HOURS_PER_DAY = 8;
-
+    // when to start
     const DEFAULT_OPENING_HOUR = '08:00';
-
+    // how many days?
     const DEFAULT_DAYS = 5;
     
-    private $behandler;
-
     private $days = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"];
 
     private $header_templ = <<<HTML
@@ -22,6 +21,7 @@ class Schedule
         </th>
 
 HTML;
+
     private $table_head = <<<HTML
 
     <thead>
@@ -30,6 +30,20 @@ HTML;
             __THE__HEADERS__
         </tr>
     </thead>
+
+
+HTML;
+
+    private $td = <<<HTML
+
+    <div class="time-slice-btn">
+        <label>
+            <td class='hour-column' rowspan='__HOUR_SLICE__'>   
+                 <input type='checkbox' hidden >
+                <span> __CONTENT__ </span> 
+            </td>
+        </label>
+    </div>
 
 
 HTML;
@@ -60,8 +74,9 @@ HTML;
         for($j = 0; $j < $hours_open; $j++)
         {
             if($j !== 0) { $hour->add(new DateInterval("PT1H")); }
+
             $table_body .= "<tr>";
-            $table_body .= "<td class='hour-coloumn' rowspan='" . $hour_slice . "'> <span> " . $hour->format('H') . " </span> </td>";
+            $table_body .= "<td class='hour-column' rowspan='" . $hour_slice . "'>  <span> " . $hour->format('H') . " </span> </td>";
             $row_added =  true;
             
             for($x = 0; $x < $hour_slice; $x++)
@@ -71,7 +86,16 @@ HTML;
                 {
                     /*$table_body .= "<td data-timeindex='$i-$j-$x' class='hour-slice'> | slice:$x - hour:$j - dag:$i | </td>";*/
                     $slice_interval = $this->create_slice_string($hour_slice, $x, $hour);
-                    $table_body .= "<td data-timeindex='$i-$j-$x' class='hour-slice'> " . $slice_interval. " </td>";
+                    $table_body .= "<td data-timeindex='$i-$j-$x'> <label class='hour-slice'> <input type='checkbox' hidden> <span> " . $slice_interval. " </span> </label> </td>";
+                    
+                    /*
+
+                    <label class="ck-knapp">
+                        <input type="checkbox" hidden name="velg" value="101" data-value="1"> <span>08.00 - 08.15</span>
+                    </label>
+
+                    */
+                
                 }
                 $row_added = false;
                 $table_body .= "</tr>";
@@ -80,7 +104,7 @@ HTML;
         }
 
         $table_body .= "</tbody>";
-        echo "<table>" . $table_head .  $table_body . "</table>";
+        echo "<table class='table-responsive'>" . $table_head .  $table_body . "</table>";
     }
 
     private function create_slice_string($slicing, $current_slice, $current_hour)
