@@ -15,8 +15,10 @@
           <div class="row">
 
             <div class="col-xs-8 col-xs-offset-2">
-              <button onclick="next_interval()"> Next interval </button>
-              <button onclick="one_day_forward()"> Shift one day forward </button>
+              <div id="buttons" style="padding-top:20px; padding-bottom:20px;">
+                <button class="btn btn-success" onclick="next_interval()"> Next interval </button>
+                <button class="btn btn-success" onclick="one_day_forward()"> Shift one day forward </button>
+              </div>
             </div>
 
           </div>

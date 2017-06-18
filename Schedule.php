@@ -56,13 +56,13 @@ HTML;
 
     function create_headers($num_of_days, $start_date)
     {
-        $ass_headers = '';
+        $finished_headers = '';
         $temp_date = date("Y-m-d", $start_date);
         $adj_date = new DateTime($temp_date);
 
         for($i = 0; $i < $num_of_days; $i++)
         {
-            $ass_headers .= str_replace(
+            $finished_headers .= str_replace(
                 "__DATE__",
                 $adj_date->format("D-d-M-Y"),
                 $this->header_templ
@@ -70,7 +70,7 @@ HTML;
             $adj_date->add(new DateInterval("P1D"));
         }
 
-        return $ass_headers;
+        return $finished_headers;
     }
 
     function get_unvailable_days($num_of_days, $start_date, $days_to_skip)
@@ -100,7 +100,7 @@ HTML;
 
         $table_head = str_replace( 
                 [ "__THE__HEADERS__", "__WEEK__NUMBER__"], 
-                [$this->create_headers($num_of_days, $start), date("W") ],
+                [$this->create_headers($num_of_days, $start), date("W", $start) ],
                 $this->table_head);
         
         $table_body = "<tbody id='table-overview' data-start='$start'>";
