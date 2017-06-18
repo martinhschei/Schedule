@@ -1,8 +1,23 @@
 .hour-slice
 {
     padding:10px;
+    text-align: center;
 }
 
+.week-number 
+{
+    padding:20px;
+    font-size:1.4em;
+    background-color:lightslategray;
+    color:white;
+}
+
+.not-available
+{
+    background-color: lightseagreen;
+    text-align: center;
+    color:white;
+}
 .hour-slice:hover
 {
     background-color:powderblue;
@@ -10,15 +25,19 @@
 
 .booking-table-heading
 {
-    padding: 30px;
+    padding: 10px;
 }
 
 .hour-column
 {
-    background-color:palegreen;
+    background-color: lightsteelblue;
+    color:white;
+    font-size:1.1em;
     padding: 20px;
 }
 
 .hour-slice input:checked + span {
-    background-color:lightcoral;
+    background-color: lightsalmon;
+    color:white;
+    font-style: italic;
 }

@@ -1,0 +1,15 @@
+{
+    "busy" :
+    [
+        { 
+            "start" : "",
+            "end" : "",
+            "info" : ""
+        }
+    ],
+
+    "days-not-available":
+    [
+       "Saturday", "Sunday"
+    ]
+}
