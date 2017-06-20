@@ -3,7 +3,7 @@
 class Schedule
 {
 
-    private $myBusyTime;
+    private $mySchedule;
 
     // split the hour in how many chunks?
     const DEFAULT_HOUR_SLICE = 4;
@@ -13,7 +13,6 @@ class Schedule
     const DEFAULT_OPENING_HOUR = '07:00';
     // how many days?
     const DEFAULT_DAYS = 8;
-
     
     private $days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
@@ -40,7 +39,7 @@ HTML;
 
     <div class="time-slice-btn">
         <label>
-            <td class='hour-column' rowspan='__HOUR_SLICE__'>   
+            <td class='hour-column' rowspan='__HOUR__SLICE__'>   
                  <input type='checkbox' hidden >
                 <span> __CONTENT__ </span> 
             </td>
