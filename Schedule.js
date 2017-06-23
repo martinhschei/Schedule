@@ -1,21 +1,7 @@
-$(document).ready(function() {
-    
-   
-
-});
-
-
-function next_interval()
+function shift_view(interval)
 {
-    var current_interval = $("#table-overview").data("start");
-    console.log(current_interval);
-
-    Ajax( { cmd : "next_interval", current_view : current_interval } , new_interval_callback);
-}
-
-function one_day_forward()
-{
-
+    var current_view_info = $("#table-overview").data("interval");
+    Ajax( { cmd : interval, current : current_view_info } , update_view_callback);
 }
 
 function Ajax(command, callback)
@@ -31,9 +17,8 @@ function Ajax(command, callback)
 	});
 }
 
-function new_interval_callback(result)
+function update_view_callback(result)
 {
-    console.log(result);
 	if(result)
     {
         $("#schedule-view").html(result.interval);
@@ -47,7 +32,6 @@ function hook_up_schedule_table_events()
 
         var timeInterval = $(this).data("interval");
         var date = $(this).data("date");
-
         console.log(date + " / " + timeInterval);
     }); 
 }

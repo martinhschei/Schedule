@@ -92,17 +92,23 @@ HTML;
         return $skipping_indexes;
     }
 
+    function get_busy_time($times)
+    {
+        return true;
+    }
+
     function assemble_overview($opening_hour, $hour_slice, $num_of_days, $hours_open, $start)
     {
         $unvailable_days = $this->get_unvailable_days($num_of_days, $start, $this->mySchedule["days-not-available"]);
-        $busy_intervals = $this->mySchedule["busy"];
+        //$busy = $this->get_busy_time($this->mySchedule["busy"]);
 
         $table_head = str_replace( 
                 [ "__THE__HEADERS__", "__WEEK__NUMBER__"], 
                 [$this->create_headers($num_of_days, $start), date("W", $start) ],
                 $this->table_head);
         
-        $table_body = "<tbody id='table-overview' data-start='$start'>";
+        //add the info used to create table as a data dataset value
+        $table_body = "<tbody id='table-overview' data-interval='$opening_hour,$hour_slice,$num_of_days,$hours_open,$start'>";
         $hour = new DateTime($opening_hour);
 
         for($j = 0; $j < $hours_open; $j++)
@@ -116,23 +122,36 @@ HTML;
             for($x = 0; $x < $hour_slice; $x++)
             {
                 if(!$row_added) { $table_body .= "<tr>"; }
-
-                // when $i = 0 we are on the start day = time()
                 for($i = 0; $i < $num_of_days; $i++)
                 {
                     if(!in_array($i, $unvailable_days))
                     {
                         $td_date = date("D-d-M-Y", strtotime("+ " . $i . " days", $start));
-                        //echo $td_date . " " . $i;
-                        $slice_interval = $this->create_slice_string($hour_slice, $x, $hour);
-                        $table_body .= 
-                            "<td class='time-interval' 
-                                data-date='$td_date' 
-                                data-interval='$slice_interval'> 
-                                <label class='hour-slice'> 
+                        if($this->mySchedule["busy"])
+                        {
+                            foreach($this->mySchedule["busy"] as $busy_time)
+                            {
+                                if($td_date == $busy_time["day"])
+                                {   
+                                    // check if the time is booked, not only the day.
+                                    $table_body .= "<td class='booked' data-timeindex='not available'> <span>  </span> </td>";
+                                }
+                                else
+                                {
+                                    $slice_interval = $this->create_slice_string($hour_slice, $x, $hour);
+                                    $table_body .= 
+                                    "<td class='time-interval' 
+                                    data-date='$td_date' 
+                                    data-interval='$slice_interval'> 
+                                    <label class='hour-slice'> 
                                     <input type='checkbox' hidden> <span> " . $slice_interval . " </span> 
-                                </label> 
-                            </td>";
+                                    </label> 
+                                    </td>";
+                            }
+                            }
+                        }
+                        
+                      
                     }
                     else
                     {

@@ -18,6 +18,12 @@
     text-align: center;
     color:white;
 }
+
+.booked 
+{
+    background-color: lightsalmon;
+}
+
 .hour-slice:hover
 {
     background-color:powderblue;

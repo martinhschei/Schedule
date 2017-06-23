@@ -2,9 +2,10 @@
     "busy" :
     [
         { 
-            "start" : "",
-            "end" : "",
-            "info" : ""
+            "day" : "Mon-03-Jul-2017",
+            "start" : "10:00",
+            "end" : "13:00",
+            "info" : "Booked"
         }
     ],
 
