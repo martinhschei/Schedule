@@ -128,7 +128,7 @@ HTML;
                             {
                                 if($td_date == $busy_time["day"])
                                 {   
-                                    // check if the time is booked, not only the day.
+                                    // TODO: check if the specific time is booked, not only the day.
                                     $table_body .= "<td class='booked' data-timeindex='not available'> <span>  </span> </td>";
                                 }
                                 else
