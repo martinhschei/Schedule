@@ -92,11 +92,6 @@ HTML;
         return $skipping_indexes;
     }
 
-    function get_busy_time($times)
-    {
-        return true;
-    }
-
     function assemble_overview($opening_hour, $hour_slice, $num_of_days, $hours_open, $start)
     {
         $unvailable_days = $this->get_unvailable_days($num_of_days, $start, $this->mySchedule["days-not-available"]);
