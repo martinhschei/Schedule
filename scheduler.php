@@ -49,7 +49,7 @@
       
                 include "Schedule.php";
                 //assemble_overview($opening_hour, $hour_slice, $num_of_days, $hours_open, $start)
-                echo (new Schedule)->assemble_overview( "07:00", 2, 5, 5, time() );                
+                echo (new Schedule)->assemble_overview( "07:00", 4, 7, 8, time() );                
 
             ?>
             </div>
